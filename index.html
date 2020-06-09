@@ -47,10 +47,16 @@
           this.echo()
         },
         cat: function(file){
+          var found = 1
           for(let i = 0; i < files.length; i++){
             if(files[i].name == file){
               this.echo(files[i].body)
+              found == 1
+              break
             }
+          }
+          if(found == 0){
+            this.echo('File could not be found')
           }
           this.echo()
         }
