@@ -1,10 +1,61 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>The Random Nerd</title>
+    <title>Resume</title>
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/TheRandomNerd/therandomnerd.github.io/master/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/jquery.terminal/css/jquery.terminal.min.css"/>
   </head>
   <body>
-  <h1>Hello World!</h1>
   </body>
+  <script>
+    let files = [
+            {
+              "name": "about_me",
+              "body": " Name: Keshav Thosar\n Class: FE EXTC (promoted to SE )\n Profile: https://www.linkedin.com/in/keshav-thosar-330224150/"
+            },
+            {
+              "name": "academics",
+              "body": " 10th: 9.4 CGPA\n 12th: 89.51 %\n Sem 1: 8.8 GPA"
+            },
+            {
+              "name": "achievements",
+              "body": " Runner Up in IEEE PIC Challenge 2019\n\n And counting…"
+            },
+            {
+              "name": "co_curriculars",
+              "body": " Member of the SPRAC Robotics Club\n Ex-performer of FE EXTC Dance group for Freshers 2019\n Subcommittee Member of Rotaract Club \n Subcommittee Member of Oculus Physical PR Team\n Member of Mudra Club\n A devotee of flute"
+            },
+            {
+              "name": "blog",
+              "body": " You can visit my blog using this link: http://keshavthosar.blogspot.com/"
+            }
+          ]
+    $('body').terminal({
+      //\ud83d\ude05
+
+      help: function(){
+        this.echo("Use 'ls' to explore the directory")
+        this.echo("Use 'cat' <filename> to read a file")
+
+      },
+        ls: function() {
+          for(let i = 0; i < files.length; i++){
+            this.echo(files[i].name)
+          }
+          this.echo()
+        },
+        cat: function(file){
+          for(let i = 0; i < files.length; i++){
+            if(files[i].name == file){
+              this.echo(files[i].body)
+            }
+          }
+          this.echo()
+        }
+    }, {
+        greetings: "Welcome to my resume. Type 'help' to get started...\n", prompt: 'guest:~$ '
+    });
+  </script>
 </html>
