@@ -47,7 +47,7 @@
           this.echo()
         },
         cat: function(file){
-          var found = 1
+          var found = 0
           for(let i = 0; i < files.length; i++){
             if(files[i].name == file){
               this.echo(files[i].body)
