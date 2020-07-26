@@ -1,72 +1,71 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <!-- Use for development
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-     <meta http-equiv="Pragma" content="no-cache">
-     <meta http-equiv="Expires" content="0">    
--->
-    <title>Resume</title>
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/TheRandomNerd/therandomnerd.github.io/master/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/jquery.terminal/css/jquery.terminal.min.css"/>
-  </head>
-  <body>
-  </body>
-  <script>
-    let files = [
-            {
-              "name": "about_me",
-              "body": " Name: Keshav Thosar\n Class: FE EXTC (promoted to SE )\n Profile: https://www.linkedin.com/in/keshav-thosar-330224150/"
-            },
-            {
-              "name": "academics",
-              "body": " 10th: 9.4 CGPA\n 12th: 89.51 %\n Sem 1: 8.8 GPA"
-            },
-            {
-              "name": "achievements",
-              "body": " Runner Up in IEEE PIC Challenge 2019\n\n And counting…"
-            },
-            {
-              "name": "co_curriculars",
-              "body": " Member of the SPRAC Robotics Club\n Ex-performer of FE EXTC Dance group for Freshers 2019\n Subcommittee Member of Rotaract Club \n Subcommittee Member of Oculus Physical PR Team\n Member of Mudra Club\n A devotee of flute"
-            },
-            {
-              "name": "blog",
-              "body": " You can visit my blog using this link: http://keshavthosar.blogspot.com/"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<style>
+#main{
+    height: 32rem;
+}
+indent{
+    margin-right: 2rem;
+}
+#code_area{
+    font-family: 'Roboto Mono', monospace;
+}
+</style>
+<body>
+    <div id="navbar" class="bg-teal-400 py-4 px-2">
+        <button class="bg-teal-600 px-6 py-2 mx-2" onclick="new_file()">New</button>
+        <button class="bg-teal-600 px-6 py-2 mx-2">Save</button>
+        <button class="bg-teal-600 px-6 py-2 mx-2">Open</button>
+        <button class="bg-teal-600 px-6 py-2 mx-2">Upload</button>
+    </div>
+    <div id="main" class="flex">
+        <div name="code_area" contenteditable="true" class="h-full inline-block w-1/2 border-solid border-4 border-gray-600 m-2 overflow-y-auto" id="code_area" ></div>
+        <div name="terminal_area" class="h-full inline-block w-1/2 border-solid border-4 border-teal-800 m-2 bg-teal-800 overflow-y-auto" id="teminal_area" ></div>
+    </div>
+    
+</body>
+<script>
+    var textarea = document.getElementById('code_area')
+    function new_file(){
+        if(textarea.innerText.length != 0){
+            if(confirm("New File?")){
+                textarea.innerText = ""
             }
-          ]
-    $('body').terminal({
-      //\ud83d\ude05
+        } 
+    }
 
-      help: function(){
-        this.echo("Use 'ls' to explore the directory")
-        this.echo("Use 'cat' <filename> to read a file")
+    textarea.addEventListener("keydown", function(e){
+        
+        if(e.key == 'Tab'){
+            e.preventDefault()
+            console.log("Tab pressed")
+            var doc =  textarea.ownerDocument.defaultView
+            var sel = doc.getSelection();
+            var range = sel.getRangeAt(0);
 
-      },
-        ls: function() {
-          for(let i = 0; i < files.length; i++){
-            this.echo(files[i].name)
-          }
-          this.echo()
-        },
-        cat: function(file){
-          var found = 0
-          for(let i = 0; i < files.length; i++){
-            if(files[i].name == file){
-              this.echo(files[i].body)
-              found = 1
-              break
-            }
-          }
-          if(found == 0){
-            this.echo('File could not be found')
-          }
-          this.echo()
+            var tabNode = document.createTextNode("\u00a0\u00a0\u00a0\u00a0");
+            range.insertNode(tabNode);
+
+            range.setStartAfter(tabNode);
+            range.setEndAfter(tabNode); 
+            sel.removeAllRanges();
+            sel.addRange(range);
+
         }
-    }, {
-        greetings: "Welcome to my resume. Type 'help' to get started...\n", prompt: 'guest:~$ '
-    });
-  </script>
+    })
+ /*   function keywords(){
+
+    }
+
+    textarea.addEventListener("keyup", keywords);
+*/
+
+</script>
 </html>
