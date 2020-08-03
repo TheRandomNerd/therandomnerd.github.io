@@ -10,12 +10,19 @@
 </body>
 <script>
 
-
 function load() {
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML = this.responseText;
+    if (this.readyState == 4 && this.status == 2){
+	    var response = this.responseText.split(',');
+	    for(var i=0; i<response.length){
+		    if(i%2 != 0){
+		    	response[i] = `<a href="${response[i]}">${response[i]}</a><br>`;
+		    }
+		    document.getElementById("demo").innerHTML += response[i];
+	    }
+	    
+      
     }
   };
   xhttp.open("GET", "https://docs.google.com/spreadsheets/d/11XLdWb_yvfwJE33fjsGGdauZwLRw4aAAUMC8gtjhLe8/export?format=csv", true);
