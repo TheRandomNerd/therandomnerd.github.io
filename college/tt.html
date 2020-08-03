@@ -4,7 +4,7 @@
 	<title>Doc</title>
 	<script>
 
-function load() {
+document.addEventListener("load", ()=> {
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 2){
@@ -21,10 +21,10 @@ xhttp.onreadystatechange = function() {
   };
   xhttp.open("GET", "https://docs.google.com/spreadsheets/d/11XLdWb_yvfwJE33fjsGGdauZwLRw4aAAUMC8gtjhLe8/export?format=csv", true);
   xhttp.send();
-}
+});
 </script>
 </head>
-<body onload="load()">
+<body>
 	<p id="demo">
 	
 </p>
